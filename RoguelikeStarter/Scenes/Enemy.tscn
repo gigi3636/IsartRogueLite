@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1enemy001"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://ca8xi63we52hj" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0110.png" id="2_egd1s"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.cs" id="2_health"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e1"]
+radius = 16.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health") groups=["enemies"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_enemy")
+_health = NodePath("Health")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_egd1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e1")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_health")
+MaxHealth = 1

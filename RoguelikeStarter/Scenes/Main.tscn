@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1main0001"]
+
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_game"]
+[ext_resource type="PackedScene" uid="uid://b1hud0001" path="res://Scenes/HUD.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://52bxixlrw7jf" path="res://Scenes/Room.tscn" id="2_iawh5"]
+[ext_resource type="PackedScene" uid="uid://b1player01" path="res://Scenes/Player.tscn" id="3_3njj4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_game")
+RoomScene = ExtResource("2_iawh5")
+PlayerScene = ExtResource("3_3njj4")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]

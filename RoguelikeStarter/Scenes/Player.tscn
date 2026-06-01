@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1player01"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://b1bullet001" path="res://Scenes/Bullet.tscn" id="2_bullet"]
+[ext_resource type="Texture2D" uid="uid://wjyq1j5djfjf" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0085.png" id="2_hq0yd"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.cs" id="3_health"]
+[ext_resource type="Script" path="res://Scripts/Weapon.cs" id="4_weapon"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_health", "_weapon", "_sprite") groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_player")
+_health = NodePath("Health")
+_weapon = NodePath("Weapon")
+_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_hq0yd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p1")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_health")
+DamageCooldown = 0.8
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("4_weapon")
+BulletScene = ExtResource("2_bullet")
