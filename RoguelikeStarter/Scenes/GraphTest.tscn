@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyje8bdysdfwa"]
+[gd_scene load_steps=5 format=3 uid="uid://cyje8bdysdfwa"]
 
-[ext_resource type="Script" path="res://Scripts/RoomGenerator.cs" id="1_hup6h"]
+[ext_resource type="Script" path="res://Scripts/GraphManager.cs" id="1_gpm68"]
+[ext_resource type="Script" path="res://Scripts/DungeonGenerator.cs" id="2_5roii"]
+[ext_resource type="Resource" uid="uid://b3epwk4fcesso" path="res://Resource/CurrentDungeon.tres" id="2_eop66"]
+[ext_resource type="Script" path="res://Scripts/GraphVisualiser.cs" id="2_ymmvg"]
 
-[node name="GraphTest" type="Node2D"]
-script = ExtResource("1_hup6h")
+[node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef")]
+script = ExtResource("1_gpm68")
+dungeonGeneratorRef = NodePath("DungeonGenerator")
+graphVisualiserRef = NodePath("GraphVisualiser")
+
+[node name="GraphVisualiser" type="Node2D" parent="."]
+script = ExtResource("2_ymmvg")
+currentDungeon = ExtResource("2_eop66")
+
+[node name="DungeonGenerator" type="Node2D" parent="."]
+script = ExtResource("2_5roii")
+currentDungeon = ExtResource("2_eop66")
+
+[node name="Camera2D" type="Camera2D" parent="."]
