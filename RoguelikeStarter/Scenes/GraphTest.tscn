@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyje8bdysdfwa"]
+
+[ext_resource type="Script" path="res://Scripts/RoomGenerator.cs" id="1_hup6h"]
+
+[node name="GraphTest" type="Node2D"]
+script = ExtResource("1_hup6h")
