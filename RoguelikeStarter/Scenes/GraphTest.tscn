@@ -9,6 +9,7 @@
 script = ExtResource("1_gpm68")
 dungeonGeneratorRef = NodePath("DungeonGenerator")
 graphVisualiserRef = NodePath("GraphVisualiser")
+roomNumber = 150
 
 [node name="GraphVisualiser" type="Node2D" parent="."]
 script = ExtResource("2_ymmvg")

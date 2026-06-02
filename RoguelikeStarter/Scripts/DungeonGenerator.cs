@@ -22,7 +22,7 @@ public partial class DungeonGenerator : Node
         while (lRoomCounter <= pRoomNumberToSpawn)
         {
             lTryCounter++;
-
+            GD.Print("essai" + lTryCounter + "nombre" + pRoomNumberToSpawn);
             currentDungeon.DungeonRoomsPosRooms = new HashSet<Vector2I>();
             currentDungeon.DungeonPath = new List<Vector2I>();
 
@@ -48,8 +48,12 @@ public partial class DungeonGenerator : Node
 
                         lRoomCounter++;
                         GD.Print(lRoomCounter);
-                        
-                        if (lRoomCounter == pRoomNumberToSpawn) GD.Print("spawnRedRoom");
+
+                        if (lRoomCounter == pRoomNumberToSpawn)
+                        {
+                            GD.Print("spawnRedRoom");
+                            return;
+                        }
 
                         break;
                     }

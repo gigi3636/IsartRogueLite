@@ -5,8 +5,8 @@ public partial class GraphVisualiser : Node2D
 {
     [Export] private CurrentDungeonRes currentDungeon;
 
-    private const float CIRCLE_SIZE = 10f;
-    private const float MARGIN_SIZE = 50f;
+    private const float CIRCLE_SIZE = 5f;
+    private const float MARGIN_SIZE = 12f;
 
     public void GenerateGraph()
     {
