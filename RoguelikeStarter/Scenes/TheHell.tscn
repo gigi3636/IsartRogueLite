@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Room.cs" id="1_3pl7b"]
 [ext_resource type="TileSet" uid="uid://b5e6ekqfvxmqu" path="res://Assets/kenney_tiny-dungeon/Tilemap/tiny_dungeon_tileset.tres" id="2_vxd0c"]
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "_enemies")]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "playerSpawnPoint")]
 script = ExtResource("1_3pl7b")
 _tileMap = NodePath("TileMap")
 _camera = NodePath("Camera2D")
-_enemies = NodePath("")
+playerSpawnPoint = [NodePath("up"), NodePath("right"), NodePath("down"), NodePath("left")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_vxd0c")
@@ -20,12 +20,12 @@ layer_2/name = "forforground"
 layer_2/tile_data = PackedInt32Array(196601, 393216, 4, 196597, 393216, 4, -131073, 393216, 4, -393207, 393216, 4, -327687, 393216, 4, 131080, 393216, 4, 327684, 393216, 4, 393209, 393216, 4, 131072, 393216, 4)
 layer_3/name = "DoorsUp"
 layer_3/tile_data = PackedInt32Array(-524289, 655360, 3, -589824, 720896, 3, -458753, 393216, 3, -524288, 393216, 3, -458752, 393216, 3)
-layer_4/name = "DoorsDown"
-layer_4/tile_data = PackedInt32Array(196608, 393216, 3, 655359, 655360, 0, 589824, 720896, 0, 589822, 393216, 3, 589823, 393216, 3, 524288, 393216, 3, 524290, 393216, 3, 524289, 393216, 3, 458752, 393216, 3, 393216, 393216, 3, 524287, 393216, 3)
-layer_5/name = "DoorsLeft"
-layer_5/tile_data = PackedInt32Array(-13, 393216, 3, 65523, 393216, 3, -12, 393216, 3, -10, 393216, 3)
-layer_6/name = "DoorsRight"
-layer_6/tile_data = PackedInt32Array(13, 393216, 3, -65523, 393216, 3, -65524, 393216, 3, -65525, 393216, 3, -65527, 393216, 3)
+layer_4/name = "DoorsRight"
+layer_4/tile_data = PackedInt32Array(13, 393216, 3, -65523, 393216, 3, -65524, 393216, 3, -65525, 393216, 3, -65527, 393216, 3)
+layer_5/name = "DoorsDown"
+layer_5/tile_data = PackedInt32Array(196608, 393216, 3, 655359, 655360, 0, 589824, 720896, 0, 589822, 393216, 3, 589823, 393216, 3, 524288, 393216, 3, 524290, 393216, 3, 524289, 393216, 3, 458752, 393216, 3, 393216, 393216, 3, 524287, 393216, 3)
+layer_6/name = "DoorsLeft"
+layer_6/tile_data = PackedInt32Array(-13, 393216, 3, 65523, 393216, 3, -12, 393216, 3, -10, 393216, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

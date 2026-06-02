@@ -6,11 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/GraphVisualiser.cs" id="2_ymmvg"]
 [ext_resource type="Script" path="res://Scripts/DungeonSpawner.cs" id="5_pdgsg"]
 
-[node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef", "dungeonSpawnerRef")]
+[node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef")]
 script = ExtResource("1_gpm68")
 dungeonGeneratorRef = NodePath("DungeonGenerator")
 graphVisualiserRef = NodePath("GraphVisualiser")
-dungeonSpawnerRef = NodePath("DungeonSpawner")
 
 [node name="GraphVisualiser" type="Node2D" parent="."]
 script = ExtResource("2_ymmvg")
