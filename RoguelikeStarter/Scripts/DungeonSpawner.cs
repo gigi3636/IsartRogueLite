@@ -20,6 +20,7 @@ public partial class DungeonSpawner : Node2D
             Room lRoom = (Room)allRoom[rand.RandiRange(0, allRoom.Length-1)].Instantiate();
             AddChild(lRoom);
 
+            lRoom.Initiliaze(currentDungeon.DungeonData[lRoomPos].doorConnected[0]);
 
             lRoom.GlobalPosition = (Vector2)lRoomPos * MARGIN_SIZE;
 

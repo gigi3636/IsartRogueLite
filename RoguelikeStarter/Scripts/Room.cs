@@ -25,6 +25,18 @@ public partial class Room : Node2D
     public void Initiliaze(int pSpawnPointIndex)
     {
         playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
+
+        for (int lDoor = 0; lDoor < playerSpawnPoint.Length; lDoor++)
+        {
+            if (lDoor +3 != pSpawnPointIndex + 3)
+            {
+                _tileMap.SetLayerEnabled(lDoor + 3, false);
+                GD.Print("False");
+
+            }
+            else _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+        }
+
     }
 
     public override void _Ready()
