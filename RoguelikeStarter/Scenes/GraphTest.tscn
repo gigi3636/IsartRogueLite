@@ -10,11 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dkcjo1k1otprc" path="res://Scenes/TheGraveYard.tscn" id="7_ag712"]
 [ext_resource type="PackedScene" uid="uid://c6w5te81tvpq5" path="res://Scenes/TheHell.tscn" id="8_bomb7"]
 
-[node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef", "dungeonSpawnerRef")]
+[node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef")]
 script = ExtResource("1_gpm68")
 dungeonGeneratorRef = NodePath("DungeonGenerator")
 graphVisualiserRef = NodePath("GraphVisualiser")
-dungeonSpawnerRef = NodePath("DungeonSpawner")
 
 [node name="GraphVisualiser" type="Node2D" parent="."]
 script = ExtResource("2_ymmvg")

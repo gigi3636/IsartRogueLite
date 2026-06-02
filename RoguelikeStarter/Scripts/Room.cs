@@ -33,7 +33,6 @@ public partial class Room : Node2D
         {
             ConfigureCamera();
         }
-
         // Find every door that belongs to this room.
         foreach (var node in GetTree().GetNodesInGroup("doors"))
         {

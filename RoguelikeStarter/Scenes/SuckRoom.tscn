@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7v42rptnmmor"]
+[gd_scene load_steps=4 format=3 uid="uid://b7v42rptnmmor"]
 
 [ext_resource type="Script" path="res://Scripts/Room.cs" id="1_tx8yx"]
 [ext_resource type="TileSet" uid="uid://b5e6ekqfvxmqu" path="res://Assets/kenney_tiny-dungeon/Tilemap/tiny_dungeon_tileset.tres" id="2_4n2kt"]
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nqqhv"]
+radius = 36.0139
+
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "playerSpawnPoint")]
 script = ExtResource("1_tx8yx")
-playerSpawnPoint = []
+_tileMap = NodePath("TileMap")
+_camera = NodePath("Camera2D")
+playerSpawnPoint = [NodePath("up"), NodePath("right"), NodePath("down"), NodePath("left")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_4n2kt")
@@ -18,12 +23,12 @@ layer_2/name = "forforground"
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "DoorsUp"
 layer_3/tile_data = PackedInt32Array(-524289, 655360, 3, -589824, 720896, 3, -458753, 393216, 3, -524288, 393216, 3, -458752, 393216, 3)
-layer_4/name = "DoorsDown"
-layer_4/tile_data = PackedInt32Array(196608, 393216, 3, 655359, 655360, 0, 589824, 720896, 0, 589822, 393216, 3, 589823, 393216, 3, 524288, 393216, 3, 524289, 393216, 3, 458752, 393216, 3, 393216, 393216, 3, 524287, 393216, 3)
-layer_5/name = "DoorsLeft"
-layer_5/tile_data = PackedInt32Array(-13, 393216, 3, 65523, 393216, 3, 65524, 393216, 3, 65526, 393216, 3)
-layer_6/name = "DoorsRight"
-layer_6/tile_data = PackedInt32Array(13, 393216, 3, -65523, 393216, 3, 12, 393216, 3, 10, 393216, 3)
+layer_4/name = "DoorsRight"
+layer_4/tile_data = PackedInt32Array(13, 393216, 3, -65523, 393216, 3, 12, 393216, 3, 10, 393216, 3)
+layer_5/name = "DoorsDown"
+layer_5/tile_data = PackedInt32Array(196608, 393216, 3, 655359, 655360, 0, 589824, 720896, 0, 589822, 393216, 3, 589823, 393216, 3, 524288, 393216, 3, 524289, 393216, 3, 458752, 393216, 3, 393216, 393216, 3, 524287, 393216, 3)
+layer_6/name = "DoorsLeft"
+layer_6/tile_data = PackedInt32Array(-13, 393216, 3, 65523, 393216, 3, 65524, 393216, 3, 65526, 393216, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -38,3 +43,27 @@ position = Vector2(0, -242)
 
 [node name="down" type="Marker2D" parent="."]
 position = Vector2(0, 273)
+
+[node name="leftEnter" type="Area2D" parent="."]
+position = Vector2(-401, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftEnter"]
+shape = SubResource("CircleShape2D_nqqhv")
+
+[node name="rightEnter" type="Area2D" parent="."]
+position = Vector2(432, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightEnter"]
+shape = SubResource("CircleShape2D_nqqhv")
+
+[node name="upEnter" type="Area2D" parent="."]
+position = Vector2(0, -242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upEnter"]
+shape = SubResource("CircleShape2D_nqqhv")
+
+[node name="downEnter" type="Area2D" parent="."]
+position = Vector2(0, 273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="downEnter"]
+shape = SubResource("CircleShape2D_nqqhv")
