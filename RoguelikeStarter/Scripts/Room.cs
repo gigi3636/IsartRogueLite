@@ -6,6 +6,7 @@ using System.Collections.Generic;
 /// It holds its type (start, end, normal...), its size in tiles and its doors.
 /// Building the dungeon and moving between rooms is up to you.
 /// </summary>
+/// 
 public partial class Room : Node2D
 {
     public enum RoomType { Start, End, Normal, Challenge, Hidden, Reward }
@@ -15,7 +16,16 @@ public partial class Room : Node2D
     [Export] private TileMap _tileMap;
     [Export] private Camera2D _camera;
     [Export] private Node2D _enemies;
+
+    [Export] private Godot.Marker2D[] playerSpawnPoint;
+
     private Dictionary<Door.Side, Door> _doors = new();
+    private Vector2 playSpawnPosition;
+
+    public void Initiliaze(int pSpawnPointIndex)
+    {
+        playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
+    }
 
     public override void _Ready()
     {
@@ -42,6 +52,7 @@ public partial class Room : Node2D
     {
         Activate();
         GiveTargetToEnemies(player);
+        player.GlobalPosition = playSpawnPosition;
     }
 
     /// <summary>
