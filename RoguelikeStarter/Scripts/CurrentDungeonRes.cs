@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public partial class CurrentDungeonRes : Resource
 {
-    public HashSet<Vector2I> DungeonRoomsPosRooms;
+    public Dictionary<Vector2I, RoomData> DungeonData;
     public List<Vector2I> DungeonPath;
+    public List<RoomData> DungeonRooms;
 
 }
