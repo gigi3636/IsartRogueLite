@@ -5,8 +5,8 @@ public partial class GraphVisualiser : Node2D
 {
     [Export] private CurrentDungeonRes currentDungeon;
 
-    private const float CIRCLE_SIZE = 5f;
-    private const float MARGIN_SIZE = 12f;
+    private const float CIRCLE_SIZE = 500f;
+    private const float MARGIN_SIZE = 1280f;
 
     public void GenerateGraph()
     {
@@ -21,7 +21,7 @@ public partial class GraphVisualiser : Node2D
             Vector2 lCurrentRoomPos = new Vector2(currentDungeon.DungeonPath[lI].X, currentDungeon.DungeonPath[lI].Y) * MARGIN_SIZE;
             Vector2 lNextRoomPos = new Vector2(currentDungeon.DungeonPath[lI + 1].X, currentDungeon.DungeonPath[lI + 1].Y) * MARGIN_SIZE;
 
-            DrawLine(lCurrentRoomPos, lNextRoomPos, Colors.White, 2f);
+            DrawLine(lCurrentRoomPos, lNextRoomPos, Colors.White, 200f);
         }
 
         // Draw all the rooms

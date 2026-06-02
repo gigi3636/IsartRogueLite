@@ -4,11 +4,12 @@
 [ext_resource type="TileSet" uid="uid://b5e6ekqfvxmqu" path="res://Assets/kenney_tiny-dungeon/Tilemap/tiny_dungeon_tileset.tres" id="2_pqd1w"]
 [ext_resource type="PackedScene" uid="uid://b1enemy001" path="res://Scenes/Enemy.tscn" id="3_ph1o4"]
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "_enemies")]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "_enemies", "playerSpawnPoint")]
 script = ExtResource("1_73vqf")
 _tileMap = NodePath("TileMap")
 _camera = NodePath("Camera2D")
 _enemies = NodePath("Enemies")
+playerSpawnPoint = []
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_pqd1w")

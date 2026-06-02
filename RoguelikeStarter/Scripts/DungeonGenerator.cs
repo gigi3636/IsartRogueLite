@@ -10,10 +10,6 @@ public partial class DungeonGenerator : Node
     private RandomNumberGenerator rand = new RandomNumberGenerator();
     private Vector2I previousRoom;
 
-    public override void _Ready()
-    {
-    }
-
     public void GenerateDungeon(int pRoomNumberToSpawn)
     {
         int lRoomCounter = 0;

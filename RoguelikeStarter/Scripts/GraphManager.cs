@@ -10,10 +10,10 @@ public partial class GraphManager : Node
 
     public override void _Ready()
     {
-        dungeonGeneratorRef.GenerateDungeon(100);
+        dungeonGeneratorRef.GenerateDungeon(10);
+        dungeonSpawnerRef.SpawnDungeon();
 
         graphVisualiserRef.GenerateGraph();
 
-        dungeonSpawnerRef.SpawnDungeon();
     }
 }
