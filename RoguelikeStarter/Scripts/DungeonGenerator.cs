@@ -22,13 +22,23 @@ public partial class DungeonGenerator : Node
         while (lRoomCounter <= pRoomNumberToSpawn)
         {
             lTryCounter++;
-            currentDungeon.DungeonRoomsPosRooms = new HashSet<Vector2I>();
-            currentDungeon.DungeonPath = new List<Vector2I>();
 
-            currentDungeon.DungeonRoomsPosRooms.Add(Vector2I.Zero);
+            // Reset all the resource data
+            currentDungeon.DungeonData = new Dictionary<Vector2I, RoomData>();
+            currentDungeon.DungeonPath = new List<Vector2I>();
+            currentDungeon.DungeonRooms = new List<RoomData>();
+
+            // Create the first room
+            RoomData lFirstRoom = new RoomData();
+            lFirstRoom.Initialize(RoomData.RoomType.EMPTY);
+
+
+            currentDungeon.DungeonData.Add(Vector2I.Zero, lFirstRoom);
             currentDungeon.DungeonPath.Add(Vector2I.Zero);
+            currentDungeon.DungeonRooms.Add(lFirstRoom);
 
             previousRoom = Vector2I.Zero;
+
             lRoomCounter = 1;
 
             for (int i = 0; i <= pRoomNumberToSpawn; i++)
@@ -37,7 +47,7 @@ public partial class DungeonGenerator : Node
 
                 List<int> lRoomPossible = new List<int>();
 
-                for (int j = 1; j < DOOR_POSSIBLE_AMOUNT + 1; j++)
+                for (int j = 0; j < DOOR_POSSIBLE_AMOUNT ; j++)
                 {
                     lRoomPossible.Add(j);
                 }
@@ -47,25 +57,40 @@ public partial class DungeonGenerator : Node
                     int lRoomIndexToTry = rand.RandiRange(0, lRoomPossible.Count - 1);
 
                     lNewRoomCo = previousRoom + CheckDirection(lRoomPossible[lRoomIndexToTry]);
-                    lRoomPossible.RemoveAt(lRoomIndexToTry);
 
 
-                    if (!currentDungeon.DungeonRoomsPosRooms.Contains(lNewRoomCo))
+                    if (!currentDungeon.DungeonData.ContainsKey(lNewRoomCo))
                     {
-                        currentDungeon.DungeonRoomsPosRooms.Add(lNewRoomCo);
+                        // Add the first door for the first room
+                        if (currentDungeon.DungeonPath.Count == 1) currentDungeon.DungeonData[previousRoom].AddConnectedDoor(lRoomPossible[lRoomIndexToTry], false);
+
+                        // Spawn new room data
+                        RoomData lNewRoomData = new RoomData();
+                        lNewRoomData.Initialize(RoomData.RoomType.EMPTY);
+
+                        // Add the entry door from the last room and the next door 
+                        lNewRoomData.AddConnectedDoor(currentDungeon.DungeonData[previousRoom].doorConnected[^1], true);
+                        lNewRoomData.AddConnectedDoor(lRoomPossible[lRoomIndexToTry], false);
+
+                        currentDungeon.DungeonData.Add(lNewRoomCo, lNewRoomData);
                         currentDungeon.DungeonPath.Add(lNewRoomCo);
+
+                        currentDungeon.DungeonRooms.Add(lNewRoomData);
                         previousRoom = lNewRoomCo;
 
                         lRoomCounter++;
 
                         if (lRoomCounter == pRoomNumberToSpawn)
                         {
+                            GD.Print("spawnRedRoom");
                             GD.Print("Try to generate the dungeon " + lTryCounter + " time");
                             return;
                         }
 
                         break;
                     }
+                    lRoomPossible.RemoveAt(lRoomIndexToTry);
+
                 }
             }
         }
@@ -73,9 +98,9 @@ public partial class DungeonGenerator : Node
 
     private Vector2I CheckDirection(int pIndex)
     {
-        if (pIndex == 1) return Vector2I.Up;
-        if (pIndex == 2) return Vector2I.Right;
-        if (pIndex == 3) return Vector2I.Down;
+        if (pIndex == 0) return Vector2I.Up;
+        if (pIndex == 1) return Vector2I.Right;
+        if (pIndex == 2) return Vector2I.Down;
         return Vector2I.Left;
     }
 }

@@ -5,12 +5,15 @@ public partial class GraphManager : Node
 {
     [Export] private DungeonGenerator dungeonGeneratorRef;
     [Export] private GraphVisualiser graphVisualiserRef;
+    [Export] private DungeonSpawner dungeonSpawnerRef;
     [Export] private int roomNumber = 1;
 
     public override void _Ready()
     {
-        dungeonGeneratorRef.GenerateDungeon(roomNumber);
+        dungeonGeneratorRef.GenerateDungeon(100);
 
-        graphVisualiserRef.GenerateGraph(); 
+        graphVisualiserRef.GenerateGraph();
+
+        dungeonSpawnerRef.SpawnDungeon();
     }
 }
