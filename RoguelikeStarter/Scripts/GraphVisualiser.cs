@@ -25,10 +25,23 @@ public partial class GraphVisualiser : Node2D
         }
 
         // Draw all the rooms
-        foreach (Vector2I lPos in currentDungeon.DungeonPath)
+        for (int lI = 0; lI < currentDungeon.DungeonPath.Count; lI++)
         {
-            Vector2 lCurrentScreenPos = new Vector2(lPos.X, lPos.Y) * MARGIN_SIZE;
-            DrawCircle(lCurrentScreenPos, CIRCLE_SIZE, Colors.DodgerBlue);
+            if (lI == 0)
+            {
+                Vector2 lCurrentScreenPos = new Vector2(currentDungeon.DungeonPath[lI].X, currentDungeon.DungeonPath[lI].Y) * MARGIN_SIZE;
+                DrawCircle(lCurrentScreenPos, CIRCLE_SIZE, Colors.Green);
+            }
+            else if (lI == currentDungeon.DungeonPath.Count - 1)
+            {
+                Vector2 lCurrentScreenPos = new Vector2(currentDungeon.DungeonPath[lI].X, currentDungeon.DungeonPath[lI].Y) * MARGIN_SIZE;
+                DrawCircle(lCurrentScreenPos, CIRCLE_SIZE, Colors.Red);
+            }
+            else
+            {
+                Vector2 lCurrentScreenPos = new Vector2(currentDungeon.DungeonPath[lI].X, currentDungeon.DungeonPath[lI].Y) * MARGIN_SIZE;
+                DrawCircle(lCurrentScreenPos, CIRCLE_SIZE, Colors.DodgerBlue);
+            }
         }
     }
 }

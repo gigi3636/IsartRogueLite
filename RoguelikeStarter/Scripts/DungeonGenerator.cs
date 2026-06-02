@@ -22,7 +22,6 @@ public partial class DungeonGenerator : Node
         while (lRoomCounter <= pRoomNumberToSpawn)
         {
             lTryCounter++;
-            GD.Print("essai" + lTryCounter + "nombre" + pRoomNumberToSpawn);
             currentDungeon.DungeonRoomsPosRooms = new HashSet<Vector2I>();
             currentDungeon.DungeonPath = new List<Vector2I>();
 
@@ -38,15 +37,14 @@ public partial class DungeonGenerator : Node
 
                 List<int> lRoomPossible = new List<int>();
 
-                for (int j = 1; j < DOOR_POSSIBLE_AMOUNT+1; j++)
+                for (int j = 1; j < DOOR_POSSIBLE_AMOUNT + 1; j++)
                 {
                     lRoomPossible.Add(j);
                 }
 
                 while (lRoomPossible.Count > 0)
                 {
-                    int lRoomIndexToTry = rand.RandiRange(0, lRoomPossible.Count-1);
-                    GD.Print(lRoomIndexToTry);
+                    int lRoomIndexToTry = rand.RandiRange(0, lRoomPossible.Count - 1);
 
                     lNewRoomCo = previousRoom + CheckDirection(lRoomPossible[lRoomIndexToTry]);
                     lRoomPossible.RemoveAt(lRoomIndexToTry);
@@ -59,11 +57,10 @@ public partial class DungeonGenerator : Node
                         previousRoom = lNewRoomCo;
 
                         lRoomCounter++;
-                        GD.Print(lRoomCounter);
 
                         if (lRoomCounter == pRoomNumberToSpawn)
                         {
-                            GD.Print("spawnRedRoom");
+                            GD.Print("Try to generate the dungeon " + lTryCounter + " time");
                             return;
                         }
 
@@ -72,7 +69,6 @@ public partial class DungeonGenerator : Node
                 }
             }
         }
-        GD.Print("Try to generate the dungeon " + lTryCounter + " time");
     }
 
     private Vector2I CheckDirection(int pIndex)
