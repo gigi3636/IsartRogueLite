@@ -36,9 +36,21 @@ public partial class DungeonGenerator : Node
             {
                 Vector2I lNewRoomCo;
 
-                for (int j = 0; j < DOOR_POSSIBLE_AMOUNT; j++)
+                List<int> lRoomPossible = new List<int>();
+
+                for (int j = 1; j < DOOR_POSSIBLE_AMOUNT+1; j++)
                 {
-                    lNewRoomCo = previousRoom + CheckDirection(rand.RandiRange(1, 4));
+                    lRoomPossible.Add(j);
+                }
+
+                while (lRoomPossible.Count > 0)
+                {
+                    int lRoomIndexToTry = rand.RandiRange(0, lRoomPossible.Count-1);
+                    GD.Print(lRoomIndexToTry);
+
+                    lNewRoomCo = previousRoom + CheckDirection(lRoomPossible[lRoomIndexToTry]);
+                    lRoomPossible.RemoveAt(lRoomIndexToTry);
+
 
                     if (!currentDungeon.DungeonRoomsPosRooms.Contains(lNewRoomCo))
                     {
