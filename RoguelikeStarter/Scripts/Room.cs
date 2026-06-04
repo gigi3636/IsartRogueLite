@@ -13,6 +13,7 @@ public partial class Room : Node2D
 
     [Export] public RoomType Type { get; private set; } = RoomType.Normal;
 
+    [Export] private CurrentDungeonRes currentDungeonRes;
     [Export] private TileMap _tileMap;
     [Export] private Camera2D _camera;
     [Export] private Node2D _enemies;
@@ -20,12 +21,15 @@ public partial class Room : Node2D
 
     [Export] private Godot.Marker2D[] playerSpawnPoint;
 
+    private DungeonSpawner _spawner;
     private Dictionary<Door.Side, Door> _doors = new();
     private Vector2 playSpawnPosition;
 
-    public void Initiliaze(int pSpawnPointIndex, params int[] openDoorsIndices)
+    public void Initiliaze(DungeonSpawner pDungeonSpawner, int pSpawnPointIndex, params int[] openDoorsIndices)
     {
         playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
+
+        _spawner = pDungeonSpawner;
 
         List<int> doorsToKeep = new List<int>(openDoorsIndices);
 
@@ -72,7 +76,18 @@ public partial class Room : Node2D
     {
         if (body is Player player)
         {
-            Enter(player);
+            GD.Print("enter");
+            GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId]);
+            currentDungeonRes.currentRoomId++;
+            _spawner.rooms[currentDungeonRes.currentRoomId].Enter(player);
+            
+        GD.Print(playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 1].playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 2].playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 3].playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 4].playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 5].playSpawnPosition);
+        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 6].playSpawnPosition);
         }
     }
 
@@ -100,7 +115,7 @@ public partial class Room : Node2D
     {
         Activate();
         GiveTargetToEnemies(player);
-        player.GlobalPosition = playSpawnPosition;
+        player.GlobalPosition = _spawner.rooms[currentDungeonRes.currentRoomId].playSpawnPosition;
     }
 
     /// <summary>

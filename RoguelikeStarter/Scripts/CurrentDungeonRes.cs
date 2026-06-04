@@ -9,4 +9,5 @@ public partial class CurrentDungeonRes : Resource
     public List<RoomData> DungeonRooms;
 
 
+    public int currentRoomId;
 }
