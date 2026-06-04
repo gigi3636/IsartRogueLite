@@ -8,4 +8,6 @@ public partial class CurrentDungeonRes : Resource
     public List<Vector2I> DungeonPath;
     public List<RoomData> DungeonRooms;
 
+
+    public int currentRoomId;
 }
