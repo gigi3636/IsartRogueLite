@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6w5te81tvpq5"]
+[gd_scene load_steps=4 format=3 uid="uid://c6w5te81tvpq5"]
 
 [ext_resource type="Script" path="res://Scripts/Room.cs" id="1_3pl7b"]
 [ext_resource type="TileSet" uid="uid://b5e6ekqfvxmqu" path="res://Assets/kenney_tiny-dungeon/Tilemap/tiny_dungeon_tileset.tres" id="2_vxd0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvxug"]
+radius = 36.0139
 
 [node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "playerSpawnPoint")]
 script = ExtResource("1_3pl7b")
@@ -40,3 +43,32 @@ position = Vector2(0, -242)
 
 [node name="down" type="Marker2D" parent="."]
 position = Vector2(0, 273)
+
+[node name="leftEnter" type="Area2D" parent="."]
+position = Vector2(-453, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftEnter"]
+scale = Vector2(1.97, 1.97)
+shape = SubResource("CircleShape2D_wvxug")
+
+[node name="rightEnter" type="Area2D" parent="."]
+position = Vector2(494, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightEnter"]
+scale = Vector2(1.97, 1.97)
+shape = SubResource("CircleShape2D_wvxug")
+
+[node name="upEnter" type="Area2D" parent="."]
+position = Vector2(0, -295)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upEnter"]
+scale = Vector2(1.97, 1.97)
+shape = SubResource("CircleShape2D_wvxug")
+
+[node name="downEnter" type="Area2D" parent="."]
+position = Vector2(0, 273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="downEnter"]
+position = Vector2(0, 52)
+scale = Vector2(1.97, 1.97)
+shape = SubResource("CircleShape2D_wvxug")

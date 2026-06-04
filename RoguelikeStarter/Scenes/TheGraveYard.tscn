@@ -45,25 +45,29 @@ position = Vector2(0, -242)
 position = Vector2(0, 245)
 
 [node name="leftEnter" type="Area2D" parent="."]
-position = Vector2(-429, 0)
+position = Vector2(-437, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leftEnter"]
+scale = Vector2(1.7, 1.7)
 shape = SubResource("CircleShape2D_nfvj8")
 
 [node name="rightEnter" type="Area2D" parent="."]
-position = Vector2(432, 0)
+position = Vector2(443, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rightEnter"]
+scale = Vector2(1.7, 1.7)
 shape = SubResource("CircleShape2D_nfvj8")
 
 [node name="upEnter" type="Area2D" parent="."]
-position = Vector2(0, -242)
+position = Vector2(0, -299)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="upEnter"]
+scale = Vector2(1.7, 1.7)
 shape = SubResource("CircleShape2D_nfvj8")
 
 [node name="downEnter" type="Area2D" parent="."]
-position = Vector2(0, 246)
+position = Vector2(0, 283)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="downEnter"]
+scale = Vector2(1.7, 1.7)
 shape = SubResource("CircleShape2D_nfvj8")

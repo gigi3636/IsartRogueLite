@@ -7,11 +7,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_efk2v"]
 radius = 36.0139
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "_enemies", "playerSpawnPoint")]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_tileMap", "_camera", "_enemies", "doorsArea", "playerSpawnPoint")]
 script = ExtResource("1_73vqf")
 _tileMap = NodePath("TileMap")
 _camera = NodePath("Camera2D")
 _enemies = NodePath("Enemies")
+doorsArea = [NodePath("upEnter"), NodePath("rightEnter"), NodePath("downEnter"), NodePath("leftEnter")]
 playerSpawnPoint = [NodePath("up"), NodePath("right"), NodePath("down"), NodePath("left")]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -52,25 +53,34 @@ position = Vector2(0, -242)
 position = Vector2(0, 249)
 
 [node name="leftEnter" type="Area2D" parent="."]
-position = Vector2(-519, 0)
+position = Vector2(-574, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leftEnter"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(2.02, 2.02)
 shape = SubResource("CircleShape2D_efk2v")
 
 [node name="rightEnter" type="Area2D" parent="."]
-position = Vector2(552, 0)
+position = Vector2(603, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rightEnter"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(2.02, 2.02)
 shape = SubResource("CircleShape2D_efk2v")
 
 [node name="upEnter" type="Area2D" parent="."]
-position = Vector2(0, -242)
+position = Vector2(0, -291)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="upEnter"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(2.02, 2.02)
 shape = SubResource("CircleShape2D_efk2v")
 
 [node name="downEnter" type="Area2D" parent="."]
 position = Vector2(0, 273)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="downEnter"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(0, 36)
+scale = Vector2(2.02, 2.02)
 shape = SubResource("CircleShape2D_efk2v")

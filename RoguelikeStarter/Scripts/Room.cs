@@ -16,6 +16,7 @@ public partial class Room : Node2D
     [Export] private TileMap _tileMap;
     [Export] private Camera2D _camera;
     [Export] private Node2D _enemies;
+    [Export] private Area2D[] doorsArea = new Area2D[4];
 
     [Export] private Godot.Marker2D[] playerSpawnPoint;
 
@@ -28,15 +29,27 @@ public partial class Room : Node2D
 
         for (int lDoor = 0; lDoor < playerSpawnPoint.Length; lDoor++)
         {
-            if (lDoor +3 != pSpawnPointIndex + 3)
+            if (lDoor + 3 != pSpawnPointIndex + 3)
             {
                 _tileMap.SetLayerEnabled(lDoor + 3, false);
                 GD.Print("False");
-
             }
-            else _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+            else
+            {
+                _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+            }
         }
 
+        for (int i = 0; i < doorsArea.Length; i++)
+        {
+            if (i != pSpawnPointIndex && i != pSpawnPointIndex)
+            {
+                if (doorsArea[i] != null)
+                {
+                    doorsArea[i].QueueFree();
+                }
+            }
+        }
     }
 
     public override void _Ready()

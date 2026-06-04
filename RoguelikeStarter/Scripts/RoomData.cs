@@ -32,7 +32,7 @@ public partial class RoomData
         
         if (doorConnected.Contains(lNewDoor))
         {
-            GD.Print(" problème");
+            GD.Print(" probleme");
             GD.Print("door position "+pDoorPosition);
             return;
         }
