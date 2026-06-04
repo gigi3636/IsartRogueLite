@@ -13,20 +13,21 @@ public partial class DungeonSpawner : Node2D
 
     public void SpawnDungeon()
     {
-        foreach (Vector2I lRoomPos in currentDungeon.DungeonPath)
+
+        for (int i = 0; i < currentDungeon.DungeonPath.Count; i++)
         {
+            Vector2I lRoomPos = currentDungeon.DungeonPath[i];
             GD.Print(lRoomPos + " " + currentDungeon.DungeonData[lRoomPos].doorConnected.Count);
 
-            Room lRoom = (Room)allRoom[rand.RandiRange(0, allRoom.Length-1)].Instantiate();
+            Room lRoom = (Room)allRoom[rand.RandiRange(0, allRoom.Length - 1)].Instantiate();
             AddChild(lRoom);
-
-            lRoom.Initiliaze(currentDungeon.DungeonData[lRoomPos].doorConnected[0]);
+            if (i == 0 || i == currentDungeon.DungeonPath.Count -1) lRoom.Initiliaze(currentDungeon.DungeonData[lRoomPos].doorConnected[0], currentDungeon.DungeonData[lRoomPos].doorConnected[0]);
+            else lRoom.Initiliaze(currentDungeon.DungeonData[lRoomPos].doorConnected[0], currentDungeon.DungeonData[lRoomPos].doorConnected[1]);
 
             lRoom.GlobalPosition = (Vector2)lRoomPos * MARGIN_SIZE;
 
-
-
         }
+
     }
 
 }

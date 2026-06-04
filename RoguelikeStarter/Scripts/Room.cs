@@ -22,19 +22,27 @@ public partial class Room : Node2D
     private Dictionary<Door.Side, Door> _doors = new();
     private Vector2 playSpawnPosition;
 
-    public void Initiliaze(int pSpawnPointIndex)
+    public void Initiliaze(int pSpawnPointIndex, int pNexDoorIndex)
     {
         playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
 
         for (int lDoor = 0; lDoor < playerSpawnPoint.Length; lDoor++)
         {
-            if (lDoor +3 != pSpawnPointIndex + 3)
+            if (lDoor +3 != pSpawnPointIndex + 3 && lDoor !=pNexDoorIndex)
             {
                 _tileMap.SetLayerEnabled(lDoor + 3, false);
-                GD.Print("False");
 
             }
-            else _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+            else if (lDoor == pNexDoorIndex)
+            {
+                _tileMap.SetLayerEnabled(pNexDoorIndex +3, true);
+
+            }
+            else
+            {
+                _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+
+            }
         }
 
     }

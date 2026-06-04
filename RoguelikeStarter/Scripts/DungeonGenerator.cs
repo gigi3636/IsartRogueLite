@@ -57,16 +57,13 @@ public partial class DungeonGenerator : Node
 
                     if (!currentDungeon.DungeonData.ContainsKey(lNewRoomCo))
                     {
-                        // Add the first door for the first room
-                        if (currentDungeon.DungeonPath.Count == 1) currentDungeon.DungeonData[previousRoom].AddConnectedDoor(lRoomPossible[lRoomIndexToTry], false);
+                        currentDungeon.DungeonData[previousRoom].AddConnectedDoor(lRoomPossible[lRoomIndexToTry], false);
 
-                        // Spawn new room data
                         RoomData lNewRoomData = new RoomData();
                         lNewRoomData.Initialize(RoomData.RoomType.EMPTY);
 
-                        // Add the entry door from the last room and the next door 
-                        lNewRoomData.AddConnectedDoor(currentDungeon.DungeonData[previousRoom].doorConnected[^1], true);
-                        lNewRoomData.AddConnectedDoor(lRoomPossible[lRoomIndexToTry], false);
+                        lNewRoomData.AddConnectedDoor(lRoomPossible[lRoomIndexToTry], true);
+
 
                         currentDungeon.DungeonData.Add(lNewRoomCo, lNewRoomData);
                         currentDungeon.DungeonPath.Add(lNewRoomCo);
@@ -78,8 +75,6 @@ public partial class DungeonGenerator : Node
 
                         if (lRoomCounter == pRoomNumberToSpawn)
                         {
-                            GD.Print("spawnRedRoom");
-                            GD.Print("Try to generate the dungeon " + lTryCounter + " time");
                             return;
                         }
 
