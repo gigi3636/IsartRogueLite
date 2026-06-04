@@ -30,4 +30,4 @@ zoom = Vector2(0.275, 0.275)
 [node name="DungeonSpawner" type="Node2D" parent="."]
 script = ExtResource("5_pdgsg")
 currentDungeon = ExtResource("2_eop66")
-allRoom = Array[PackedScene]([ExtResource("5_8jrio"), ExtResource("6_fixx7"), ExtResource("7_ag712"), ExtResource("8_bomb7")])
+allRoom = Array[PackedScene]([ExtResource("6_fixx7"), ExtResource("7_ag712"), ExtResource("8_bomb7"), ExtResource("5_8jrio")])
