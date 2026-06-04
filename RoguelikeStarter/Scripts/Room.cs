@@ -40,11 +40,6 @@ public partial class Room : Node2D
             {
                 _tileMap.SetLayerEnabled(lDoor + 3, true);
             }
-            else if (lDoor == pNexDoorIndex)
-            {
-                _tileMap.SetLayerEnabled(pNexDoorIndex + 3, true);
-
-            }
             else
             {
                 _tileMap.SetLayerEnabled(lDoor + 3, false);
