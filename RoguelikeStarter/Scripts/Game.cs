@@ -7,29 +7,19 @@ using Godot;
 /// </summary>
 public partial class Game : Node2D
 {
-    [Export] private PackedScene RoomScene { get; set; }
     [Export] private PackedScene PlayerScene { get; set; }
 
     private Node2D _projectiles;
 
     public override void _Ready()
     {
-        if (RoomScene == null || PlayerScene == null)
-        {
-            GD.PushWarning("Game: RoomScene and PlayerScene must be assigned in the editor.");
-            return;
-        }
 
-        var room = RoomScene.Instantiate<Room>();
-        AddChild(room);
 
         // After the room, so bullets draw above the floor instead of under it.
         _projectiles = new Node2D { Name = "Projectiles" };
         AddChild(_projectiles);
 
         var player = SpawnPlayer();
-        player.GlobalPosition = room.GlobalPosition;
-        room.Enter(player);
     }
 
     private Player SpawnPlayer()
