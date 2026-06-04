@@ -7,7 +7,6 @@ using Godot;
 /// </summary>
 public partial class Game : Node2D
 {
-    [Export] private PackedScene RoomScene { get; set; }
     [Export] private PackedScene PlayerScene { get; set; }
 
     private Node2D _projectiles;
@@ -20,8 +19,6 @@ public partial class Game : Node2D
             return;
         }
 
-        var room = RoomScene.Instantiate<Room>();
-        AddChild(room);
 
         // After the room, so bullets draw above the floor instead of under it.
         _projectiles = new Node2D { Name = "Projectiles" };

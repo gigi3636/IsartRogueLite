@@ -29,27 +29,29 @@ public partial class Room : Node2D
 
         for (int lDoor = 0; lDoor < playerSpawnPoint.Length; lDoor++)
         {
-            if (lDoor +3 != pSpawnPointIndex + 3 && lDoor !=pNexDoorIndex)
+            if (lDoor + 3 != pSpawnPointIndex + 3 && lDoor != pNexDoorIndex)
             {
                 _tileMap.SetLayerEnabled(lDoor + 3, false);
 
             }
             else if (lDoor == pNexDoorIndex)
             {
-                _tileMap.SetLayerEnabled(pNexDoorIndex +3, true);
+                _tileMap.SetLayerEnabled(pNexDoorIndex + 3, true);
 
             }
             else
             {
                 _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
 
-        for (int i = 0; i < doorsArea.Length; i++)
-        {
-            if (i != pSpawnPointIndex && i != pSpawnPointIndex)
-            {
-                if (doorsArea[i] != null)
+                for (int i = 0; i < doorsArea.Length; i++)
                 {
-                    doorsArea[i].QueueFree();
+                    if (i != pSpawnPointIndex && i != pSpawnPointIndex)
+                    {
+                        if (doorsArea[i] != null)
+                        {
+                            doorsArea[i].QueueFree();
+                        }
+                    }
                 }
             }
         }
