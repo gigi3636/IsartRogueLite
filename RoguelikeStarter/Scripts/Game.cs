@@ -13,11 +13,6 @@ public partial class Game : Node2D
 
     public override void _Ready()
     {
-        if (RoomScene == null || PlayerScene == null)
-        {
-            GD.PushWarning("Game: RoomScene and PlayerScene must be assigned in the editor.");
-            return;
-        }
 
 
         // After the room, so bullets draw above the floor instead of under it.
@@ -25,8 +20,6 @@ public partial class Game : Node2D
         AddChild(_projectiles);
 
         var player = SpawnPlayer();
-        player.GlobalPosition = room.GlobalPosition;
-        room.Enter(player);
     }
 
     private Player SpawnPlayer()
