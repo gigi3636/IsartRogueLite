@@ -23,35 +23,56 @@ public partial class Room : Node2D
     private Dictionary<Door.Side, Door> _doors = new();
     private Vector2 playSpawnPosition;
 
-    public void Initiliaze(int pSpawnPointIndex, int pNexDoorIndex)
+    public void Initiliaze(int pSpawnPointIndex, params int[] openDoorsIndices)
     {
         playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
 
+        List<int> doorsToKeep = new List<int>(openDoorsIndices);
+
+        if (!doorsToKeep.Contains(pSpawnPointIndex))
+        {
+            doorsToKeep.Add(pSpawnPointIndex);
+        }
+
         for (int lDoor = 0; lDoor < playerSpawnPoint.Length; lDoor++)
         {
-            if (lDoor +3 != pSpawnPointIndex + 3 && lDoor !=pNexDoorIndex)
+            if (doorsToKeep.Contains(lDoor))
             {
-                _tileMap.SetLayerEnabled(lDoor + 3, false);
-
-            }
-            else if (lDoor == pNexDoorIndex)
-            {
-                _tileMap.SetLayerEnabled(pNexDoorIndex +3, true);
-
+                _tileMap.SetLayerEnabled(lDoor + 3, true);
             }
             else
             {
-                _tileMap.SetLayerEnabled(pSpawnPointIndex + 3, true);
+                _tileMap.SetLayerEnabled(lDoor + 3, false);
+            }
+        }
 
         for (int i = 0; i < doorsArea.Length; i++)
         {
-            if (i != pSpawnPointIndex && i != pSpawnPointIndex)
+            if (!doorsToKeep.Contains(i))
             {
                 if (doorsArea[i] != null)
                 {
                     doorsArea[i].QueueFree();
                 }
             }
+            else
+            {
+                if (doorsArea[i] != null)
+                {
+                    doorsArea[i].BodyEntered += OnDoorBodyEntered;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Reçoit le signal quand un corps physique (Node2D/PhysicsBody2D) entre dans la porte.
+    /// </summary>
+    private void OnDoorBodyEntered(Node2D body)
+    {
+        if (body is Player player)
+        {
+            Enter(player);
         }
     }
 
