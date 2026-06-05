@@ -25,13 +25,26 @@ public partial class Room : Node2D
     private Dictionary<Door.Side, Door> _doors = new();
     private Vector2 playSpawnPosition;
 
-    public void Initiliaze(DungeonSpawner pDungeonSpawner, int pSpawnPointIndex, params int[] openDoorsIndices)
+    private Vector2I CurrentRoomPos;
+
+    private List<int> doorIds = new();
+
+    public void Initiliaze(Vector2I lRoomPos, DungeonSpawner pDungeonSpawner, int pSpawnPointIndex, params int[] openDoorsIndices)
     {
         playSpawnPosition = playerSpawnPoint[pSpawnPointIndex].GlobalPosition;
 
         _spawner = pDungeonSpawner;
 
+        CurrentRoomPos = lRoomPos;
+
         List<int> doorsToKeep = new List<int>(openDoorsIndices);
+
+        doorIds.Add(pSpawnPointIndex);
+        doorIds.Add(openDoorsIndices[0]);
+
+        GD.Print(" door dentre " +  pSpawnPointIndex + " door sortie " + openDoorsIndices[0]);
+
+
 
         if (!doorsToKeep.Contains(pSpawnPointIndex))
         {
@@ -63,25 +76,38 @@ public partial class Room : Node2D
             {
                 if (doorsArea[i] != null)
                 {
-                    doorsArea[i].BodyEntered += OnDoorBodyEntered;
+                    int lI = i;
+                    doorsArea[i].BodyEntered += (body) => OnDoorBodyEntered(body , lI);
                 }
             }
         }
+
     }
 
     /// <summary>
     /// Reçoit le signal quand un corps physique (Node2D/PhysicsBody2D) entre dans la porte.
     /// </summary>
-    private void OnDoorBodyEntered(Node2D body)
+    /// 
+    private void OnDoorBodyEntered(Node2D body, int lIndex)
     {
         if (body is Player player)
         {
             currentDungeonRes.currentRoomId++;
-            _spawner.rooms[currentDungeonRes.currentRoomId].Enter(player);
-            
+
+            Vector2I lNextRoomPos;
+
+            if (lIndex == 0) lNextRoomPos = Vector2I.Up;
+            else if (lIndex == 1) lNextRoomPos = Vector2I.Right;
+            else if (lIndex == 2) lNextRoomPos = Vector2I.Down;
+            else lNextRoomPos = Vector2I.Left;
+
+            lNextRoomPos += CurrentRoomPos;
+
+            int lDoorToGo = (lIndex + 2) % 4;
+
+            _spawner.rooms[lNextRoomPos].Enter(player, lDoorToGo);
         }
     }
-
     public override void _Ready()
     {
         if (_tileMap != null)
@@ -102,13 +128,13 @@ public partial class Room : Node2D
     /// Called when the player enters this room.
     /// Activates the camera and gives the player to the enemies so they can chase it.
     /// </summary>
-    public void Enter(Player player)
+    public void Enter(Player player, int pDoorToGo)
     {
         Activate();
         GiveTargetToEnemies(player);
-        player.GlobalPosition = _spawner.rooms[currentDungeonRes.currentRoomId].playSpawnPosition;
-    }
 
+        player.GlobalPosition = playerSpawnPoint[pDoorToGo].GlobalPosition;
+    }
     /// <summary>
     /// Turns on this room's camera.
     /// </summary>
