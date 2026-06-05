@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyje8bdysdfwa"]
+[gd_scene load_steps=10 format=3 uid="uid://cyje8bdysdfwa"]
 
 [ext_resource type="Script" path="res://Scripts/GraphManager.cs" id="1_gpm68"]
 [ext_resource type="Script" path="res://Scripts/DungeonGenerator.cs" id="2_5roii"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/GraphVisualiser.cs" id="2_ymmvg"]
 [ext_resource type="PackedScene" uid="uid://52bxixlrw7jf" path="res://Scenes/Room.tscn" id="5_8jrio"]
 [ext_resource type="Script" path="res://Scripts/DungeonSpawner.cs" id="5_pdgsg"]
+[ext_resource type="PackedScene" uid="uid://b7v42rptnmmor" path="res://Scenes/SuckRoom.tscn" id="7_ec178"]
+[ext_resource type="PackedScene" uid="uid://dkcjo1k1otprc" path="res://Scenes/TheGraveYard.tscn" id="8_ah5sy"]
+[ext_resource type="PackedScene" uid="uid://c6w5te81tvpq5" path="res://Scenes/TheHell.tscn" id="9_i8fmt"]
 
 [node name="GraphTest" type="Node2D" node_paths=PackedStringArray("dungeonGeneratorRef", "graphVisualiserRef", "dungeonSpawnerRef")]
 script = ExtResource("1_gpm68")
@@ -24,4 +27,4 @@ currentDungeon = ExtResource("2_eop66")
 [node name="DungeonSpawner" type="Node2D" parent="."]
 script = ExtResource("5_pdgsg")
 currentDungeon = ExtResource("2_eop66")
-allRoom = Array[PackedScene]([ExtResource("5_8jrio")])
+allRoom = Array[PackedScene]([ExtResource("5_8jrio"), ExtResource("7_ec178"), ExtResource("8_ah5sy"), ExtResource("9_i8fmt")])

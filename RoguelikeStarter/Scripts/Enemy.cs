@@ -7,15 +7,20 @@ using Godot;
 public partial class Enemy : CharacterBody2D, IDamageable
 {
     [Export] private float Speed { get; set; } = 90f;
+    [Export] private Texture2D[] skins;
+    [Export] private Sprite2D skin;
     [Export] private int ContactDamage { get; set; } = 1;
 
     [Export] private HealthComponent _health;
 
     private Node2D _target;
+    private RandomNumberGenerator _randomNumberGenerator;
 
     public override void _Ready()
     {
         _health.Died += OnDied;
+        _randomNumberGenerator = new RandomNumberGenerator();
+        skin.Texture = skins[_randomNumberGenerator.RandiRange(0, skins.Length)];
     }
 
     public override void _PhysicsProcess(double delta)
@@ -23,8 +28,10 @@ public partial class Enemy : CharacterBody2D, IDamageable
         if (_target == null || !IsInstanceValid(_target))
         {
             Velocity = Vector2.Zero;
+            Scale = Vector2.Zero;
             return;
         }
+        Scale = new Vector2(3,3);
 
         Vector2 dir = (_target.GlobalPosition - GlobalPosition).Normalized();
         Velocity = dir * Speed;

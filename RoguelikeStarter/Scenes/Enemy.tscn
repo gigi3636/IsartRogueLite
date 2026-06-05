@@ -1,21 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1enemy001"]
+[gd_scene load_steps=13 format=3 uid="uid://b1enemy001"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://cuvto34xi7xlc" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0109.png" id="2_55mmd"]
 [ext_resource type="Texture2D" uid="uid://ca8xi63we52hj" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0110.png" id="2_egd1s"]
 [ext_resource type="Script" path="res://Scripts/HealthComponent.cs" id="2_health"]
+[ext_resource type="Texture2D" uid="uid://1hwkclpwma7h" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0108.png" id="3_yimm7"]
+[ext_resource type="Texture2D" uid="uid://btpspdsqmrr4g" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0111.png" id="5_127uu"]
+[ext_resource type="Texture2D" uid="uid://k20nhmx3vxis" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0112.png" id="6_5yqcf"]
+[ext_resource type="Texture2D" uid="uid://cssqhtduu3tx7" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0096.png" id="7_5ku12"]
+[ext_resource type="Texture2D" uid="uid://duk3p2lcg2thk" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0097.png" id="8_pdfbt"]
+[ext_resource type="Texture2D" uid="uid://crq42081d1cdq" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0087.png" id="9_cwe4e"]
+[ext_resource type="Texture2D" uid="uid://c7hbbhwne6rc1" path="res://Assets/kenney_tiny-dungeon/Tiles/tile_0084.png" id="10_ci0d2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e1"]
 radius = 16.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health") groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("skin", "_health") groups=["enemies"]]
+scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_enemy")
+skins = Array[Texture2D]([ExtResource("2_55mmd"), ExtResource("3_yimm7"), ExtResource("2_egd1s"), ExtResource("5_127uu"), ExtResource("6_5yqcf"), ExtResource("7_5ku12"), ExtResource("8_pdfbt"), ExtResource("9_cwe4e"), ExtResource("10_ci0d2")])
+skin = NodePath("Sprite2D")
 _health = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_egd1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e1")
