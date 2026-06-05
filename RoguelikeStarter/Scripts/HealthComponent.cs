@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public partial class HealthComponent : Node
 {
-    [Export] private int MaxHealth { get; set; } = 3;
+    [Export] private int MaxHealth { get; set; } = 300;
 
     /// <summary>
     /// How long the entity stays invulnerable after a hit.
