@@ -76,18 +76,9 @@ public partial class Room : Node2D
     {
         if (body is Player player)
         {
-            GD.Print("enter");
-            GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId]);
             currentDungeonRes.currentRoomId++;
             _spawner.rooms[currentDungeonRes.currentRoomId].Enter(player);
             
-        GD.Print(playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 1].playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 2].playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 3].playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 4].playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 5].playSpawnPosition);
-        GD.Print(_spawner.rooms[currentDungeonRes.currentRoomId + 6].playSpawnPosition);
         }
     }
 
@@ -95,7 +86,7 @@ public partial class Room : Node2D
     {
         if (_tileMap != null)
         {
-            ConfigureCamera();
+            //ConfigureCamera();
         }
         // Find every door that belongs to this room.
         foreach (var node in GetTree().GetNodesInGroup("doors"))
