@@ -24,10 +24,12 @@ public partial class DungeonSpawner : Node2D
             Room lRoom = (Room)allRoom[rand.RandiRange(0, allRoom.Length - 1)].Instantiate();
             AddChild(lRoom);
             rooms.Add(lRoom);
+
+            lRoom.GlobalPosition = (Vector2)lRoomPos * MARGIN_SIZE;
+
             if (i == 0 || i == currentDungeon.DungeonPath.Count - 1) lRoom.Initiliaze(this, currentDungeon.DungeonData[lRoomPos].doorConnected[0], currentDungeon.DungeonData[lRoomPos].doorConnected[0]);
             else lRoom.Initiliaze(this, currentDungeon.DungeonData[lRoomPos].doorConnected[0], currentDungeon.DungeonData[lRoomPos].doorConnected[1]);
 
-            lRoom.GlobalPosition = (Vector2)lRoomPos * MARGIN_SIZE;
 
         }
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://52bxixlrw7jf"]
+[gd_scene load_steps=5 format=3 uid="uid://52bxixlrw7jf"]
 
 [ext_resource type="Script" path="res://Scripts/Room.cs" id="1_73vqf"]
 [ext_resource type="TileSet" uid="uid://b5e6ekqfvxmqu" path="res://Assets/kenney_tiny-dungeon/Tilemap/tiny_dungeon_tileset.tres" id="2_pqd1w"]
 [ext_resource type="Resource" uid="uid://b3epwk4fcesso" path="res://Resource/CurrentDungeon.tres" id="2_uprql"]
-[ext_resource type="PackedScene" uid="uid://b1enemy001" path="res://Scenes/Enemy.tscn" id="3_ph1o4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efk2v"]
 radius = 36.0139
@@ -13,7 +12,7 @@ script = ExtResource("1_73vqf")
 currentDungeonRes = ExtResource("2_uprql")
 _tileMap = NodePath("TileMap")
 _camera = NodePath("Camera2D")
-_enemies = NodePath("Enemies")
+_enemies = NodePath("")
 doorsArea = [NodePath("upEnter"), NodePath("rightEnter"), NodePath("downEnter"), NodePath("leftEnter")]
 playerSpawnPoint = [NodePath("up"), NodePath("right"), NodePath("down"), NodePath("left")]
 
@@ -36,24 +35,18 @@ layer_6/name = "left"
 layer_6/tile_data = PackedInt32Array(65519, 393216, 3, -17, 393216, 3, -65553, 393216, 3, 131055, 393216, 3, 65520, 393216, 3, -16, 393216, 3, 65521, 393216, 3, 65523, 393216, 3, -65554, 393216, 3, -65555, 393216, 3, -65556, 393216, 3, -65557, 393216, 3, -21, 0, 4, 65515, 0, 4, 131051, 393216, 3, 131052, 0, 4, 131053, 393216, 3, 131054, 393216, 3, 65518, 393216, 3, -18, 393216, 3, -19, 393216, 3, 65517, 393216, 3, 65516, 393216, 3, -20, 393216, 3, -131091, 131072, 0, -131092, 131072, 0, -131093, 131072, 0, -131090, 327680, 1, 196590, 327680, 0, 196589, 131072, 2, 196588, 131072, 2, 196587, 131072, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_ph1o4")]
-position = Vector2(354, 18)
 
 [node name="left" type="Marker2D" parent="."]
-position = Vector2(-513, 0)
+position = Vector2(-457, 0)
 
 [node name="right" type="Marker2D" parent="."]
-position = Vector2(547, 0)
+position = Vector2(469, 0)
 
 [node name="up" type="Marker2D" parent="."]
-position = Vector2(0, -242)
+position = Vector2(0, -176)
 
 [node name="down" type="Marker2D" parent="."]
-position = Vector2(0, 249)
+position = Vector2(0, 201)
 
 [node name="leftEnter" type="Area2D" parent="."]
 position = Vector2(-574, 0)
